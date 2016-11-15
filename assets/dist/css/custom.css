@@ -1,0 +1,161 @@
+
+
+/*merchandise pop up tube*/
+/*konten popp tube*/
+.base{
+	background: url(../img/base.jpg);
+	background-size: 100% 100%;
+	width: 100% ;
+	height: 100%;
+}
+.popuptube{
+	width: 300px;
+	height: 453px;
+	position: relative;
+}
+.pop_atas,.pop_gambar,.pop_ornamen1,.pop_ornamen2,.pop_ornamen3,.pop_ornamen4,.pop_ornamen5,.pop_ornamen6,.pop_bawah{
+position: absolute;
+}
+.img_pop{
+/*width: 100% !important;*/
+height: 100% !important;
+user-drag: none; 
+user-select: none;
+-moz-user-select: none;
+-webkit-user-drag: none;
+-webkit-user-select: none;
+-ms-user-select: none;
+
+-webkit-user-select: none;  /* Chrome all / Safari all */
+-moz-user-select: none;     /* Firefox all */
+-ms-user-select: none;      /* IE 10+ */
+-o-user-select: none;
+user-select: none;
+}
+.pop_atas{
+top: 21%;
+height: 15%;
+width: 90%;
+left: 5%;
+z-index: 500;
+}
+.pop_gambar{
+width: 54%;
+top: 29%;
+left: 23%;
+/*display: none;*/
+height: 44%;
+}
+.pop_ornamen1{
+top: 28%;
+width: 30%;
+left: 5%;
+z-index: 500;
+height:16%;
+}
+.pop_ornamen2{
+top: 28%;
+width: 30%;
+left: 65%;
+z-index: 500;
+height:16%;
+}
+.pop_ornamen3{
+top: 40%;
+width: 30%;
+left: 5%;
+z-index: 500;
+height:16%;
+}
+.pop_ornamen4{
+top: 40%;
+width: 30%;
+left: 65%;
+z-index: 500;
+height:16%;
+}
+.pop_ornamen5{
+top: 53%;
+width: 30%;
+left: 5%;
+z-index: 500;
+height:16%;
+}
+.pop_ornamen6{
+top: 53%;
+width: 30%;
+left: 65%;
+z-index: 500;
+height:16%;
+}
+.pop_bawah{
+top: 64%;
+height: 20%;
+width: 90%;
+left: 5%;
+z-index: 499;
+}
+
+/*other*/
+.thumb_foto{
+max-height: 40px;
+max-width: 100px;
+overflow: hidden;
+}
+.thumb_foto_md{
+max-height: 100px;
+max-width: 100px;
+overflow: hidden;
+}
+.title-sm{
+	font-size: 20px;
+font-weight: 700;
+margin: 0;
+}
+.title-md{
+	font-size: 22px;
+font-weight: 700;
+margin: 0;
+}
+.margin-b-10{
+	margin-bottom: 10px !important;
+}
+.big-label{
+	padding: 2px 16px;
+border-radius: 21px;
+}
+.margin-r-10{
+	margin-right: 10px !important;
+}
+
+.box-custom{
+position: relative;
+border-radius: 3px;
+background: #ffffff;
+/*border-top: 3px solid #d2d6de;*/
+margin-bottom: 20px;
+box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+.btn-full{
+width: 100% !important;
+display: inline-block;
+background: #605ca8 none repeat scroll 0% 0%;
+color: #fff;
+transition: ease-in all;
+transition-duration: 0.2s;
+border: none;
+}
+.btn-full:hover{
+background: #555299;
+color: #fff;
+}
+.no-padding-left{
+	padding-left: 0px !important;
+}
+.no-padding-right{
+	padding-right: 0px !important;
+}
+.margin-b-10{
+	margin-bottom: 10px !important;
+}
+

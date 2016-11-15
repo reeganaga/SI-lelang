@@ -1,0 +1,86 @@
+@media (min-width: 768px) {
+	.logo-top{
+	position: relative;
+	width: 60%;
+	height: auto !important;
+	top: 3px;
+	left: 10px;
+	}
+	.font-logo{
+	display: none;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.logo-top{
+		display: none !important;
+	}
+	.font-logo{
+	display: block;
+	text-align: center;
+	}
+	.section-heading-page{
+		padding-top: 45px !important;
+	}
+}
+@media (max-width: 767px) {
+	.logo-top{
+		display: none !important;
+	}
+}
+
+.margin-r-10{
+	margin-right: 10px !important;
+}
+.banner-iklan{
+	max-height: 200px;
+	overflow: hidden;
+	width: 100%;
+}
+.section-banner-iklan{
+	padding: 0px !important;
+}
+.no-padding{
+	padding: 0px !important;
+}
+.font-logo{
+	/*margin-top: 9px !important;*/
+}
+.margin-b-10{
+	margin-bottom: 10px !important;
+}
+.nav-dashboard{
+	margin-bottom: 10px;
+}
+.thumb_keranjang{
+	max-height: 100px;
+	max-width: 100px;
+	overflow: hidden;
+}
+
+
+/*other*/
+.thumb_foto{
+max-height: 100px;
+}
+
+.active-custom{
+	background: #e53e2d;
+	border-color: #e53e2d;
+}
+#ornamen-atas img,#ornamen-konten img,#ornamen-bawah img,.item_konten img{
+	cursor: pointer;
+}
+img {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      user-drag: none;
+      -webkit-touch-callout: none;
+    }
+
+.img-box {
+height: 155px;
+overflow: hidden;
+}
