@@ -17,11 +17,21 @@ class Bidding_model extends CI_Model
 		return $query;
 	}
 	public function getBidding(){
-		$this->db->select('*,bidding.slug as slug_bidding');
 		$this->db->order_by('bidding.id_bidding','DESC');
-		$this->db->join('kategori','kategori.id_kategori=bidding.id_kategori');
+		$this->db->join('barang','barang.id_barang=bidding.id_barang');
+		$this->db->join('user','user.id_user=bidding.id_user');
+		$this->db->order_by('bidding.jml_bidding', 'desc');
+		$this->db->group_by('bidding.id_barang');
 		$query = $this->db->get($this->table);
 		return $query->result();
+	}
+
+	public function getAmountBidder($id_barang){
+		$this->db->select('count(id_bidding) as jml_bidder');
+		$this->db->where('id_barang', $id_barang);
+		$this->db->group_by('id_barang');
+		$query = $this->db->get($this->table);
+		return $query->row();
 	}
 
 	public function getBiddingRow(){

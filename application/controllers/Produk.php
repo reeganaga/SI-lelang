@@ -161,7 +161,7 @@ class Produk extends CI_Controller {
 			$next_day = date_add($now, date_interval_create_from_date_string('2 days'));
 			$tgl_expired = date_format($next_day, 'Y-m-d H:i:s');
 
-			$update_barang = $this->Barang_model->updateBarang($this->input->post('id_barang'),array('tgl_expired'=>$tgl_expired,'harga_deal'=>$jml_bidding));
+			$update_barang = $this->Barang_model->updateBarang($this->input->post('id_barang'),array('tgl_expired'=>$tgl_expired,'harga_deal'=>$jml_bidding,'status'=>'bidding'));
 			$this->session->set_flashdata('msg_success', 'Anda telah berhasil bidding');
 			redirect('item/'.$this->input->post('slug_barang'));
 		} else {
@@ -212,7 +212,14 @@ class Produk extends CI_Controller {
 
 		if ($cek_barang->num_rows()==1) {
 			//barang belum pernah di bid
-			return true;
+			$jml_bidding = $this->input->post('jml_bidding');
+        	$hasil = $this->db->where(array('harga < '=>$jml_bidding,'id_barang'=>$id_barang))->get('barang');
+			if ($hasil->num_rows() >= 1) {
+				return TRUE;
+			}else{
+				$this->form_validation->set_message('jmlbidding_check', ' {field} :'.set_value('jml_barang').' Harus lebih besar dari harga awal');
+	            return FALSE;
+			}
 		}else{
 			//barang pernah di bid
 			$jml_bidding = $this->input->post('jml_bidding');

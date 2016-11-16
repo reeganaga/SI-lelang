@@ -32,7 +32,7 @@ class Daftar extends CI_Controller {
 		// $bannerpromo=$this->Banner_promo_model->getBannerPromo();
 		$this->template_front->display(
 			array('content'=>'front/daftar/content'),
-			array('title'=>'Daftar','metatag'=>getSeo())
+			array('title'=>'Daftar')
 		);
 	}
 	public function proses_daftar(){

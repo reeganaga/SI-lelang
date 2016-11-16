@@ -233,17 +233,26 @@
           <h4 class="modal-title" id="myModalLabel">Bidding</h4>
         </div>
         <div class="modal-body">
+      <?php if ($this->session->userdata('id_user')): ?>
+          <div class="form">
+            
             <div class="input-group">
               <input type="text" name="jml_bidding" class="form-control" placeholder="Jumlah Nomimal Bidding">
-              <input type="text" name="id_barang" id="modal_id_barang">
-              <input type="text" name="slug_barang" id="modal_slug_barang">
+              <input type="hidden" name="id_barang" id="modal_id_barang">
+              <input type="hidden" name="slug_barang" id="modal_slug_barang">
             </div>
+          </div>
         </div>
+      <?php else: ?>
+      <div class="alert alert-warning">
+        <b>Maaf.</b> Silahkan <a target="_blank" href="<?php echo site_url('daftar'); ?>">daftar</a> dan <a target="_blank" href="<?php echo site_url('auth'); ?>">login</a> untuk dapat melakukan bidding
+      </div>
+      <?php endif ?>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary" name="send_bidding">Bid Sekarang</button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>
