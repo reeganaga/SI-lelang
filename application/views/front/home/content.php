@@ -19,7 +19,6 @@
                           <p>Kode Barang : <?php echo 'BRG'.$barang->id_barang; ?></p>
                           <p class="title-sm text-theme text-theme-sm">Bid : Rp 150.000</p>
                           <h3 class="shop-price text-theme-sm">Harga awal Rp <?php echo number_format($barang->harga,0,'.','.'); ?></h3>
-                          <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="<?php echo site_url('produk/addtocart/'.$barang->id_barang); ?>"><i class="fa fa-thumbs-up"></i>Bidding</a>
                           <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="<?php echo site_url('item/'.$barang->slug_barang); ?>"><i class="fa fa-angle-right"></i>Details</a>
                         </div>              
                     </div>
