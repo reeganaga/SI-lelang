@@ -104,7 +104,7 @@
                               <?php elseif ($transaksi->status == 'terkonfirmasi'): ?>
                                 <div class="label label-info">Terkonfirmasi</div>
                               <?php elseif ($transaksi->status == 'proses'): ?>
-                                <div class="label label-primary">Sedang Dibuat</div>
+                                <div class="label label-primary">Sedang Diproses</div>
                               <?php elseif ($transaksi->status == 'kirim'): ?>
                                 <div class="label label-success">Dikirim</div>
                               <?php endif ?>

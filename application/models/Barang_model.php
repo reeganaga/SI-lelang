@@ -110,5 +110,12 @@ class Barang_model extends CI_Model
 			return FALSE;
 		}
 	}
+
+	public function getBarangWin($id_user){
+		$this->db->where(array('barang.status'=>'closed','bidding.status'=>'win','id_user'=>$id_user));
+		$this->db->join('bidding','bidding.id_barang = barang.id_barang');
+		$query = $this->db->get($this->table);
+		return $query->result();
+	}
 }
  ?>

@@ -127,7 +127,7 @@ class Konfirmasi extends MY_Controller {
 				$id_transaksi=$this->input->post('id_transaksi');
 				$data = array(
 					'id_transaksi'=>$id_transaksi,
-					'jml'=>$this->input->post('jumlah'),
+					'jml'=>(int)$this->input->post('jumlah'),
 					'tgl'=>$this->input->post('tgl'),
 					'jam'=>$this->input->post('jam'),
 					'tranfer_ke'=>$this->input->post('tranfer_ke'),

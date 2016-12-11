@@ -147,7 +147,9 @@
                 <div class="box-header">
                   <i class="fa fa-comments-o"></i>
                   <h3 class="box-title">Daftar Bidder</h3>
-                  <button class="btn btn-default pull-right">Close Bidding</button>
+                  <?php if ($barang->status=='open' || $barang->status=='bidding'): ?>
+                    <button class="btn btn-danger pull-right" data-target="#deleteUser" data-toggle="modal" data-link="<?php echo base_url('admin/bidding/status/'.$barang->id_barang.'/closed'); ?>"><i class="fa fa-exclamation" ></i> Close</button>
+                  <?php endif ?>
                 </div>
                 <div class="box-body">
                   <table class="table table-bordered">
@@ -163,7 +165,7 @@
                         <tr>
                           <td><?php echo $bidder->nama_lengkap; ?></td>
                           <td><?php $date = date_create($bidder->tgl_bidding); echo date_format($date,'d F Y - H:i:s'); ?></td>
-                          <td><?php echo $bidder->jml_bidding; ?></td>
+                          <td>Rp <?php echo number_format($bidder->jml_bidding,0,'.','.'); ?></td>
                         </tr>
                       <?php endforeach ?>
                     </tbody>
@@ -179,3 +181,40 @@
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
+
+<!-- modal close bidding -->
+<!-- <div class="modal fade modal-success" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Tutup Bidding</h4>
+      </div>
+      <div class="modal-body">
+        Jika anda menutup bidding ini, maka <b>member</b> dengan nilai <b>bid tertinggi</b> akan menjadi <b>pemenang</b>.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a id="linkDeleteOrnamen" class="btn btn-success">Proses</a>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="modal fade modal-warning" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Tutup Bidding</h4>
+      </div>
+      <div class="modal-body">
+        Jika anda menutup bidding ini, maka <b>member</b> dengan nilai <b>bid tertinggi</b> akan menjadi <b>pemenang</b>.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a id="linkDeleteOrnamen" class="btn btn-warning">Tutup Bidding</a>
+      </div>
+    </div>
+  </div>
+</div>

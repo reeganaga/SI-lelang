@@ -50,10 +50,10 @@ class Pemesanan extends MY_Controller {
 		$arr_transaksi_detail = $this->Transaksi_Detail_model->getTransaksi_DetailByTran($id_transaksi);
 		// mengambil ata konfirmasi berdasarkan id
 		$arr_konfirmasi = $this->Konfirmasi_model->getKonfirmasiByTran($id_transaksi);
-			//mengambil data transaksi berdasarkan id transaksi
-			$arr_transaksi = $this->Transaksi_model->getTransaksiAll($id_transaksi);
-			// menghitung total transaksi
-			$total = $this->total_no_vou($id_transaksi);
+		//mengambil data transaksi berdasarkan id transaksi
+		$arr_transaksi = $this->Transaksi_model->getTransaksiAll($id_transaksi);
+		// menghitung total transaksi
+		$total = $this->total_no_vou($id_transaksi);
 		
 
 		$this->template_back->display(
@@ -111,7 +111,7 @@ class Pemesanan extends MY_Controller {
 		$sub_total=0;
 		foreach ($arr_transaksi_detail as $transaksi_detail) {
 			// menjumlah subtotal yang ada di transaksi detail berdasarkan id transaksi
-			$sub_total += $transaksi_detail->sub_total;
+			$sub_total += $transaksi_detail->harga_deal;
 		}
 		$grand_total = $sub_total+$ongkir;
 		return $total = array(

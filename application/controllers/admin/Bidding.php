@@ -63,7 +63,8 @@ class Bidding extends MY_Controller {
 		$arr_bidder = $this->Bidding_model->getBiddingByBarang($id_barang);
 		$this->template_back->display(
 			array(
-				'content'=>'back/bidding/content_detail'
+				'content'=>'back/bidding/content_detail',
+				'javascript'=>'back/bidding/custom_js'
 			),
 			array(
 				'barang'=>$barang,
@@ -78,12 +79,42 @@ class Bidding extends MY_Controller {
 		$data = array(
 			'status'=>$status,
 			);
-		if ($this->Barang_model->updateBarang($id,$data)) {
-			$this->session->set_flashdata('msg_error','Data Barang Gagal diubah');
+		if ($status=='closed') {
+			//mengubah status barang menjadi closed
+			$this->Barang_model->updateBarang($id,$data);
+			$arr_bidder = $this->Bidding_model->getBiddingByBarang($id);
+			
+			$i=1;
+			foreach ($arr_bidder as $bidder) {
+				$id_bidding= $bidder->id_bidding;
+				$by = array(
+					'id_bidding'=>$bidder->id_bidding,
+					'id_barang'=>$id
+				);
+				if ($i==1) {
+					//mengubah bidder yang menang
+					$this->Bidding_model->updateBidding($by,array('status'=>'win'));
+					echo "yang menang <pre>";
+					print_r($this->db->last_query());
+					echo "</pre>";
+				}else{
+					//mengubah bidder yang kalah
+					$this->Bidding_model->updateBidding($by,array('status'=>'lose'));
+					echo "yang kalah <pre>";
+					print_r($this->db->last_query());
+					echo "</pre>";
+				}$i++;
+			}
+			$this->session->set_flashdata('msg_success','Anda telah menyelesaikan bidding ini');
+
 		}else{
-			$this->session->set_flashdata('msg_success','Data Barang berhasil diubah');
+			if ($this->Barang_model->updateBarang($id,$data)) {
+				$this->session->set_flashdata('msg_error','Data Bidding Gagal diubah');
+			}else{
+				$this->session->set_flashdata('msg_success','Data Bidding berhasil diubah');
+			}
 		}
-		redirect('admin/katalog_barang');
+		redirect('admin/bidding');
 		
 	}
 

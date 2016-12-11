@@ -134,69 +134,7 @@
                 </div><!-- /.chat -->
               </div><!-- /.box (chat box) -->
 
-              <!-- Chat box -->
-              <div class="box box-info">
-                <div class="box-header">
-                  <i class="fa fa-comments-o"></i>
-                  <h3 class="box-title">SEO Default</h3>
-                </div>
-                <div class="box-body">
-                  <!-- <form class="form-horizontal"> -->
-                  <?php if (empty($arr_seo)): ?>
-                  <?php echo form_open('admin/pengaturan/add_seo',array('class'=>'form-horizontal')); ?>
-                    <div class="form-group">
-                      <label class="control-label col-md-3">Meta title</label>
-                      <div class="col-md-9">
-                        <input name="meta_title" type="text" class="form-control" ></input>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3">Meta Deskripsi</label>
-                      <div class="col-md-9">
-                        <input name="meta_deskripsi" type="text" class="form-control" ></input>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3">Meta Keyword</label>
-                      <div class="col-md-9">
-                        <input name="meta_keyword" type="text" class="form-control" ></input>
-                        <span id="confirmMessage" class="confirmMessage"></span>
-                      </div>
-                    </div>
-                  <?php else: ?>
-                    <?php foreach ($arr_seo as $seo): ?>
-                  <?php echo form_open('admin/pengaturan/edit_seo',array('class'=>'form-horizontal')); ?>
-                      <div class="form-group">
-                        <label class="control-label col-md-3">Meta title</label>
-                        <div class="col-md-9">
-                          <input value="<?php echo $seo->meta_title; ?>" name="meta_title" type="text" class="form-control" ></input>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3">Meta Deskripsi</label>
-                        <div class="col-md-9">
-                          <input value="<?php echo $seo->meta_deskripsi; ?>" name="meta_deskripsi" type="text" class="form-control" ></input>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3">Meta Keyword</label>
-                        <div class="col-md-9">
-                          <input value="<?php echo $seo->meta_keyword; ?>" name="meta_keyword" type="text" class="form-control" ></input>
-                          <span id="confirmMessage" class="confirmMessage"></span>
-                        </div>
-                      </div>
-                    <?php endforeach ?>
-                  <?php endif ?>
-
-
-                    <div class="form-group">
-                      <div class="col-md-9 col-md-offset-3">
-                        <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i>Simpan</button>
-                      </div>
-                    </div>
-                  </form>
-                </div><!-- /.chat -->
-              </div><!-- /.box (chat box) -->
+              
 
             </section><!-- /.Left col -->
 

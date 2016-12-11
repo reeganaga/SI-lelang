@@ -115,7 +115,7 @@
                           </tr>
                           <tr>
                             <td>Jumlah Pengiriman</td>
-                            <td><strong>Rp <?php echo number_format($konfirmasi->jml,2,'.',','); ?></strong></td>
+                            <td><strong>Rp <?php echo number_format($konfirmasi->jml,0,'.','.'); ?></strong></td>
                           </tr>
                           <tr>
                             <td>Bukti Pembayaran</td>
@@ -187,8 +187,8 @@
                         <th>Kode</th>
                         <th>Nama</th>
                         <th>Jumlah</th>
-                        <th>Harga</th>
-                        <th>Total</th>
+                        <th>Harga Awal</th>
+                        <th>harga Jadi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -198,26 +198,9 @@
                         <td><?php echo $i; $i++; ?></td>
                         <td>BRG<?php echo $transaksi_detail->id_barang; ?></td>
                         <td><?php echo $transaksi_detail->nama_barang; ?></td>
-                        <td><?php echo $transaksi_detail->jumlah; ?></td>
+                        <td><?php echo $transaksi_detail->jumlah_barang; ?></td>
                         <td class="text-right">Rp <?php echo number_format($transaksi_detail->harga,2,',','.'); ?></td>
-                        <td class="text-right">Rp <?php echo number_format($transaksi_detail->sub_total,2,',','.'); ?></td>
-                        <!-- <td>
-                          <button class="btn btn-default" data-target="#viewMerchandise" data-toggle="modal"
-                          data-ornamenatas="<?php echo $transaksi_detail->ornamen_atas; ?>"
-                          data-ornamenkonten1="<?php echo $transaksi_detail->ornamen1; ?>"
-                          data-ornamenkonten2="<?php echo $transaksi_detail->ornamen2; ?>"
-                          data-ornamenkonten3="<?php echo $transaksi_detail->ornamen3; ?>"
-                          data-ornamenkonten4="<?php echo $transaksi_detail->ornamen4; ?>"
-                          data-ornamenkonten5="<?php echo $transaksi_detail->ornamen5; ?>"
-                          data-ornamenkonten6="<?php echo $transaksi_detail->ornamen6; ?>"
-                          data-ornamenbawah="<?php echo $transaksi_detail->ornamen_bawah; ?>"
-                          data-gambar="<?php echo $transaksi_detail->gambar; ?>"
-                          data-ucapan="<?php echo $transaksi_detail->ucapan; ?>"
-                          data-tema="<?php echo $transaksi_detail->tema; ?>"
-                          data-tema="<?php echo $transaksi_detail->tema; ?>"
-                          data-tambahan="<?php echo $transaksi_detail->tambahan; ?>"
-                          ><i class="fa fa-search-plus"></i></button>
-                        </td> -->
+                        <td class="text-right">Rp <?php echo number_format($transaksi_detail->harga_deal,2,',','.'); ?></td>
                       </tr>
                       <?php endforeach ?>
                     </tbody>

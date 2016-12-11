@@ -88,7 +88,9 @@
                             </td>
                             <td>
                               <a href="<?php echo base_url('admin/bidding/detail/'.$barang->id_barang); ?>" class="btn btn-primary"><i class="fa fa-search-plus"></i>Lihat</a>
-                              <button class="btn btn-danger" data-target="#deleteUser" data-toggle="modal" data-link="<?php echo base_url('admin/bidding/hapus/'.$barang->id_barang); ?>"><i class="fa fa-exclamation" ></i> Close</button>
+                              <?php if ($barang->status=='open' || $barang->status=='bidding'): ?>
+                                <button class="btn btn-danger" data-target="#deleteUser" data-toggle="modal" data-link="<?php echo base_url('admin/bidding/status/'.$barang->id_barang.'/closed'); ?>"><i class="fa fa-exclamation" ></i> Close</button>
+                              <?php endif ?>
                             </td>
                         </tr>
                       <?php endforeach ?>
@@ -101,19 +103,19 @@
 
 
 
-            <div class="modal fade modal-danger" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade modal-warning" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Hapus Barang</h4>
+                    <h4 class="modal-title" id="myModalLabel">Tutup Bidding</h4>
                   </div>
                   <div class="modal-body">
-                    Apakah anda ingin menghapus Barang ini ?
+                    Jika anda menutup bidding ini, maka <b>member</b> dengan nilai <b>bid tertinggi</b> akan menjadi <b>pemenang</b>.
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <a id="linkDeleteOrnamen" class="btn btn-danger">Hapus</a>
+                    <a id="linkDeleteOrnamen" class="btn btn-warning">Tutup Bidding</a>
                   </div>
                 </div>
               </div>

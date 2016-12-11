@@ -29,7 +29,7 @@ class Carapesan extends CI_Controller {
 		// $arr_hto=$this->Hto_model->getHto();
 		$this->template_front->display(
 			array('content'=>'front/carapesan/content'),
-			array('title'=>'Cara pesan','metatag'=>getSeo())
+			array('title'=>'Cara pesan','title'=>'Cara Pesan')
 		);
 	}
 }

@@ -196,6 +196,7 @@ class Produk extends CI_Controller {
 		$now = date('Y-m-d H:i:s');
         $hasil = $this->db->where(array('tgl_expired >= '=>$now))->or_where(array('tgl_expired'=>'0000-00-00 00:00:00'))->get('barang');
 
+		// $cek_status = $this->db->where(array('status'=>'open','id_barang'=>id_barang))
 		if ($hasil->num_rows() >= 1) {
 			return TRUE;
 		}else{

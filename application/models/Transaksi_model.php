@@ -45,6 +45,7 @@ class Transaksi_model extends CI_Model
 	}
 	public function getTransaksiById($id_transaksi){
 		$this->db->where('id_transaksi',$id_transaksi);
+		$this->db->join('kota','kota.id_kota = transaksi.id_kota');
 		$query = $this->db->get($this->table);
 		return $query->row();
 	}

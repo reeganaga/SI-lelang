@@ -104,8 +104,13 @@ class Bidding_model extends CI_Model
 	public function insertBidding($data){
 		$this->db->insert($this->table,$data);
 	}
-	public function updateBidding($id_bidding,$data){
-		$this->db->where('id_bidding',$id_bidding);
+	public function updateBidding($by,$data){
+
+		if (is_array($by)) {
+			$this->db->where($by);
+		}else{
+			$this->db->where('id_bidding',$by);
+		}
 		$this->db->update($this->table,$data);
 	}
 	public function deleteBidding($id_bidding){

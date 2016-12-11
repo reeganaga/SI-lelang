@@ -42,6 +42,8 @@ class Keranjang extends MY_Controller {
 		foreach ($arr_user as $user) {
 			$alamat_user = $user->alamat;
 		}
+		$arr_keranjang = $this->Barang_model->getBarangWin($this->id_user);
+		
 		$this->template_front->display(
 			array(
 				'content'=>'front/keranjang/content',
@@ -50,6 +52,7 @@ class Keranjang extends MY_Controller {
 			),
 			array(
 				'arr_kota'=>$arr_kota,
+				'arr_keranjang'=>$arr_keranjang,
 				'alamat_user'=>$alamat_user,
 				'title'=>'Keranjang'
 			)
@@ -158,9 +161,8 @@ class Keranjang extends MY_Controller {
 			//terdapat transaksi sesuai id transaksi
 
 			//mengecek transaksi
-			$arr_transaksi = $this->Transaksi_model->getTransaksiNoVou($id_transaksi);
+			$transaksi = $this->Transaksi_model->getTransaksiById($id_transaksi);
 			$arr_transaksi_detail = $this->Transaksi_Detail_model->getTransaksi_detailByTran($id_transaksi);
-			$total = $this->total_no_vou($id_transaksi);
 
 				$this->template_front->display(
 					array(
@@ -169,10 +171,8 @@ class Keranjang extends MY_Controller {
 					),
 					array(
 						'arr_transaksi_detail'=>$arr_transaksi_detail,
-						'arr_transaksi'=>$arr_transaksi,
-						'total'=>$total,
+						'transaksi'=>$transaksi,
 						'title'=>'Keranjang'
-
 					)
 				);			
 		}else{
@@ -193,8 +193,10 @@ class Keranjang extends MY_Controller {
 		}
 		// echo $tarif_ongkir;
 		$total_bayar=0;
-		foreach ($this->cart->contents() as $cart) {
-			$total_bayar=$total_bayar+$cart['subtotal'];
+		//mengambil data keranjang dari tabel barang
+		$arr_keranjang = $this->Barang_model->getBarangWin($this->id_user);
+		foreach ($arr_keranjang as $keranjang) {
+			$total_bayar=$total_bayar+$keranjang->harga_deal;
 		}
 		// $total_bayar=($harga*$jml_keranjang);
 		// $this->insert_transaksi_detail();
@@ -216,29 +218,21 @@ class Keranjang extends MY_Controller {
 
 	public function insert_transaksi_detail($id_transaksi){
 		// $arr_keranjang =$this->Keranjang_model->getKeranjangByIdUser($this->id_user);
-
-		foreach ($this->cart->contents() as $cart) {
+		
+		$arr_keranjang = $this->Barang_model->getBarangWin($this->id_user);
+		foreach ($arr_keranjang as $keranjang) {
 			$data=array(
-				'id_barang'=>$cart['id'],
-				'jumlah'=>$cart['qty'],
-				'harga'=>$cart['price'],
-				'sub_total'=>$cart['subtotal'],
+				'id_barang'=>$keranjang->id_barang,
 				'id_transaksi'=>$id_transaksi
 				);
-			$barang = $this->Barang_model->getBarangById($cart['id']);
-			$kurangibarang= $barang->jumlah_barang - $cart['qty'];
-			$databarang = array(
-				'jumlah_barang'=>$kurangibarang,
-				);
 			//insert ke tabel transaksi detail
-			$this->Transaksi_Detail_model->insertTransaksi_Detail($data);
-			$this->Barang_model->updateBarang($cart['id'],$databarang);
+			$this->Transaksi_Detail_model->insertTransaksi_detail($data);
+			//mengubah status barang dari closed ke process
+			$this->Barang_model->updateBarang($keranjang->id_barang,array('status'=>'processed'));
 		}
-		// mengkosongkan data keranjang berdasarkan id user
-		$this->cart->destroy();
 	}
 
-	public function total_no_vou($id_transaksi){
+	/*public function total_no_vou($id_transaksi){
 		$arr_transaksi = $this->Transaksi_model->getTransaksiAll($id_transaksi);
 		foreach ($arr_transaksi as $transaksi) {
 			$ongkir = $transaksi->tarif;
@@ -254,9 +248,9 @@ class Keranjang extends MY_Controller {
 			'sub_total'=>$sub_total,
 			'grand_total'=>$grand_total
 			);
-	}
+	}*/
 
-	public function total_with_vou($id_transaksi){
+	/*public function total_with_vou($id_transaksi){
 		$arr_transaksi = $this->Transaksi_model->getTransaksiNoVou($id_transaksi);
 		foreach ($arr_transaksi as $transaksi) {
 			$ongkir = $transaksi->tarif;
@@ -284,5 +278,5 @@ class Keranjang extends MY_Controller {
 			'grand_total'=>$grand_total,
 			'potongan'=>$potongan
 			);
-	}
+	}*/
 }

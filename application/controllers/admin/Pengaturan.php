@@ -38,7 +38,7 @@ class Pengaturan extends MY_Controller {
 			),
 			array(
 				'arr_user'=>$arr_user,
-				'arr_seo'=>getSeo()
+				'title'=>'Pengaturan'
 			)
 		);	
 	}
@@ -120,28 +120,7 @@ class Pengaturan extends MY_Controller {
 			redirect('admin/pengaturan');
 		}
 	}
-
-	public function add_seo(){
-		$data = array(
-			'meta_title'=>$this->input->post('meta_title'),
-			'meta_deskripsi'=>$this->input->post('meta_deskripsi'),
-			'meta_keyword'=>$this->input->post('meta_keyword'),
-		);
-		$this->db->insert('default_seo',$data);
-		$this->session->set_flashdata('msg_success','Data SEO berhasil diubah');
-		redirect('admin/pengaturan');
-	}
-
-	public function edit_seo(){
-		$data = array(
-			'meta_title'=>$this->input->post('meta_title'),
-			'meta_deskripsi'=>$this->input->post('meta_deskripsi'),
-			'meta_keyword'=>$this->input->post('meta_keyword'),
-		);
-		$this->db->update('default_seo',$data);
-		$this->session->set_flashdata('msg_success','Data SEO berhasil diubah');
-		redirect('admin/pengaturan');
-	}	
+	
 	public function password_check($str){
 		$cek_data=array(
 			'password'=>md5($this->input->post('password_lama')),

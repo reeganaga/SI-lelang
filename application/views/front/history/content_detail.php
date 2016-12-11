@@ -162,8 +162,8 @@
                               <th>Kode</th>
                               <th>Nama</th>
                               <th>Jumlah</th>
-                              <th>Harga</th>
-                              <th>Total</th>
+                              <th>Harga Awal</th>
+                              <th>Harga Jadi</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -173,9 +173,9 @@
                               <td><?php echo $no;$no++; ?></td>
                               <td>BRG<?php echo $transaksi_detail->id_barang; ?></td>
                               <td><?php echo $transaksi_detail->nama_barang; ?></td>
-                              <td><?php echo $transaksi_detail->jumlah; ?></td>
+                              <td><?php echo $transaksi_detail->jumlah_barang; ?></td>
                               <td>Rp <?php echo number_format($transaksi_detail->harga,2,'.',','); ?></td>
-                              <td>Rp <?php echo number_format($transaksi_detail->sub_total,2,'.',','); ?></td>
+                              <td>Rp <?php echo number_format($transaksi_detail->harga_deal,2,'.',','); ?></td>
                             </tr>
                             <?php endforeach ?>
                           </tbody> 

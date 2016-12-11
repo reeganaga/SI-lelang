@@ -54,31 +54,34 @@ class History extends MY_Controller {
 		$arr_transaksi_detail = $this->Transaksi_Detail_model->getTransaksi_DetailByTran($id_transaksi);
 
 		$cek_transaksi = $this->Transaksi_model->cek_transaksi(array(
-			'id_transaksi'=>$id_transaksi,
+			'id_transaksi'=>$id_transaksi,'id_user'=>$this->id_user
 		));
 		// 1 -> gakpake voucher ; 0 pakai voucher
 		// dicek tranaksinya mengunakan voucher atau tidak
-		if ($cek_transaksi->num_rows()==0) {
+		if ($cek_transaksi->num_rows()==1) {
 			// transaksi pakai voucher
-			$arr_transaksi = $this->Transaksi_model->getTransaksiAll($id_transaksi);
+			/*$arr_transaksi = $this->Transaksi_model->getTransaksiAll($id_transaksi);
 			$total = $this->total_with_vou($id_transaksi);
-		}else{
+		}else{*/
 			// transaksi tanpa voucher
 			$arr_transaksi = $this->Transaksi_model->getTransaksiNoVou($id_transaksi);
 			$total = $this->total_no_vou($id_transaksi);
+		
+			// echo $cek_transaksi->num_rows();
+			$this->template_front->display(
+				array(
+					'content'=>'front/history/content_detail',
+				),
+				array(
+					'arr_transaksi'=>$arr_transaksi,
+					'arr_transaksi_detail'=>$arr_transaksi_detail,
+					'title'=>'History Transaksi',
+					'total'=>$total,
+				)
+			);
+		}else{
+			echo "<script>alert('Tidak terdapat transaksi yang diminta');history.go(-1);</script>";
 		}
-		// echo $cek_transaksi->num_rows();
-		$this->template_front->display(
-			array(
-				'content'=>'front/history/content_detail',
-			),
-			array(
-				'arr_transaksi'=>$arr_transaksi,
-				'arr_transaksi_detail'=>$arr_transaksi_detail,
-				'title'=>'History Transaksi',
-				'total'=>$total,
-			)
-		);
 	}
 
 	public function total_no_vou($id_transaksi){
@@ -90,7 +93,7 @@ class History extends MY_Controller {
 		$sub_total=0;
 		foreach ($arr_transaksi_detail as $transaksi_detail) {
 			// menjumlah subtotal yang ada di transaksi detail berdasarkan id transaksi
-			$sub_total += $transaksi_detail->sub_total;
+			$sub_total += $transaksi_detail->harga_deal;
 		}
 		$grand_total = $sub_total+$ongkir;
 		return $total = array(
@@ -99,7 +102,7 @@ class History extends MY_Controller {
 			);
 	}	
 
-	public function total_with_vou($id_transaksi){
+	/*public function total_with_vou($id_transaksi){
 		$arr_transaksi = $this->Transaksi_model->getTransaksiNoVou($id_transaksi);
 		foreach ($arr_transaksi as $transaksi) {
 			$ongkir = $transaksi->tarif;
@@ -127,5 +130,5 @@ class History extends MY_Controller {
 			'grand_total'=>$grand_total,
 			'potongan'=>$potongan
 			);
-	}
+	}*/
 }

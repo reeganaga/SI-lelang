@@ -109,6 +109,7 @@
             <div class="col-md-7 col-sm-7">
               <div class="shop-item-description">
                 <h1 class="title-lg text-theme-sm" title="<?php echo $barang->nama_barang; ?>"><?php echo $barang->nama_barang; ?></h1>
+                <p >Kode Barang : <span class="badge btn-success">BRG<?php echo $barang->id_barang; ?></span> </p>
                 <p class="text-theme-sm"><small>Kategori : <?php echo $kategori->nama_kategori; ?></small>
                 <p class="text-theme-sm"><small>Harga Awal : Rp <?php echo number_format($barang->harga, 0,'.','.'); ?></small>
                 </p>
@@ -126,7 +127,17 @@
                 <h3 class="title-lg text-theme title-lg-shop-item"> Rp <?php echo number_format($barang->harga_deal, 0,'.','.'); ?></h3>
                 <br>
                 <p>Tanggal Berakhir</p>
-                <h3 class="title-sm text-theme title-sm-shop-item"><?php $date_exp = date_create($barang->tgl_expired); echo date_format($date_exp,'d F Y - H:i:s') ; ?></h3>
+                <h3 class="title-sm text-theme title-sm-shop-item"><?php 
+                if ($barang->tgl_expired=='0000-00-00 00:00:00') {
+                  //jika barangya blum dibidding maka belum expired
+             			$now = date_create(date("Y-m-d 00:00:00"));
+                  $next_day = date_add($now, date_interval_create_from_date_string('2 days'));
+                  echo date_format($next_day,'d F Y - H:i:s');
+                }else{
+                  //jika barang sudah dibidding maka terdapat tanggal expired
+                  $date_exp = date_create($barang->tgl_expired); echo date_format($date_exp,'d F Y - H:i:s'); 
+                }
+                ?></h3>
                 <br>
                 <dl>
                   <dd class="text-justify"><?php echo $barang->deskripsi; ?></dd>
@@ -227,32 +238,31 @@
 <div class="modal fade" id="modal-bidding" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form class="form" action="<?php echo site_url(); ?>produk/bidding" method="post" >
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Bidding</h4>
         </div>
         <div class="modal-body">
-      <?php if ($this->session->userdata('id_user')): ?>
-          <div class="form">
-            
+          <?php if ($this->session->userdata('id_user')): ?>
+          <form class="form" action="<?php echo site_url(); ?>produk/bidding" method="post" >
             <div class="input-group">
               <input type="text" name="jml_bidding" class="form-control" placeholder="Jumlah Nomimal Bidding">
               <input type="hidden" name="id_barang" id="modal_id_barang">
               <input type="hidden" name="slug_barang" id="modal_slug_barang">
             </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" name="send_bidding">Bid Sekarang</button>
+            </div>
+          </form>
+          <?php else: ?>
+          <div class="alert alert-warning">
+            <b>Maaf.</b> Silahkan <a target="_blank" href="<?php echo site_url('daftar'); ?>">daftar</a> dan <a target="_blank" href="<?php echo site_url('auth'); ?>">login</a> untuk dapat melakukan bidding
           </div>
+          <?php endif ?>
         </div>
-      <?php else: ?>
-      <div class="alert alert-warning">
-        <b>Maaf.</b> Silahkan <a target="_blank" href="<?php echo site_url('daftar'); ?>">daftar</a> dan <a target="_blank" href="<?php echo site_url('auth'); ?>">login</a> untuk dapat melakukan bidding
-      </div>
-      <?php endif ?>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" name="send_bidding">Bid Sekarang</button>
         </div>
-      </form>
     </div>
   </div>
 </div>

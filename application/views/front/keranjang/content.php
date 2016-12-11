@@ -64,26 +64,22 @@
                           <th>Kode</th>
                           <th>Nama Barang</th>
                           <th>Jumlah</th>
-                          <th>Subtotal</th>
+                          <th>Harga Awal</th>
+                          <th>Harga Jadi</th>
                           <th>Gambar</th>
-                          <th>Aksi</th>
                       </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($this->cart->contents() as $cart): ?>
+                    <?php foreach ($arr_keranjang as $keranjang): ?>
                       <tr>
-                          <td>BRG<?php echo $cart['id']; ?></td>
-                          <td><?php echo $cart['name']; ?></td>
-                          <td><?php echo $cart['qty']; ?></td>
-                          <td>Rp <?php echo number_format($cart['subtotal'],2,',','.'); ?></td>
+                          <td>BRG<?php echo $keranjang->id_barang; ?></td>
+                          <td><?php echo $keranjang->nama_barang; ?></td>
+                          <td><?php echo $keranjang->jumlah_barang; ?></td>
+                          <td>Rp <?php echo number_format($keranjang->harga,2,',','.'); ?></td>
+                          <td>Rp <?php echo number_format($keranjang->harga_deal,2,',','.'); ?></td>
                           <!-- <td><?php echo $harga; ?></td> -->
                           <td>
-                              <img src="<?php echo base_url(); ?>assets/uploads/barang/<?php echo $cart['gambar']; ?>" class="img-responsive img-thumbnail thumb_keranjang">
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-rounded btn-red" data-toggle="modal" data-target="#deleteKeranjang" data-link="<?php echo base_url(); ?>produk/removecart/<?php echo $cart['rowid']; ?>">
-                              <i class="fa fa-trash "></i>Hapus
-                            </button>
+                              <img src="<?php echo base_url(); ?>assets/uploads/barang/<?php echo $keranjang->gambar; ?>" class="img-responsive img-thumbnail thumb_keranjang">
                           </td>
                       </tr>
                     <?php endforeach ?>
@@ -91,7 +87,7 @@
               </table>
             </div>
           </div>
-          <?php if ($this->cart->contents()): ?>
+          <?php if ($arr_keranjang): ?>
           <div class="row">
             <div class="col-md-6 col-md-offset-6 col-sm-12">
             <?php echo form_open('member/keranjang/proses_pesan',array('class'=>'form-horizontal')); ?>

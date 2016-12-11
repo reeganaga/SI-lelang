@@ -6,7 +6,7 @@
           
           <div class="row mt-20">
                 <?php foreach ($arr_barang as $barang): ?>
-                  <?php if ($barang->status!='closed'): ?>
+                  <?php if ($barang->status=='open' || $barang->status=='bidding'): ?>
                     <div class="col-sm-4 mt-20">
                       <!--Katalog barang -->
                         <div class="shop-box bordered">
@@ -16,6 +16,7 @@
                           <h2 class="title-sm text-theme text-theme-sm"><a href="<?php echo site_url('item/'.$barang->slug_barang); ?>" title="<?php echo $barang->nama_barang; ?>"><?php echo $barang->nama_barang; ?></a></h2>
                           <p class="text-theme-sm"><?php echo substr($barang->deskripsi, 0,30); ?></p>
                           <p>Status : <?php echo $barang->status; ?></p>
+                          <p>Kode Barang : <?php echo 'BRG'.$barang->id_barang; ?></p>
                           <p class="title-sm text-theme text-theme-sm">Bid : Rp 150.000</p>
                           <h3 class="shop-price text-theme-sm">Harga awal Rp <?php echo number_format($barang->harga,0,'.','.'); ?></h3>
                           <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="<?php echo site_url('produk/addtocart/'.$barang->id_barang); ?>"><i class="fa fa-thumbs-up"></i>Bidding</a>
