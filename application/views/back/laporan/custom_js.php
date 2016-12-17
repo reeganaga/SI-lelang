@@ -17,7 +17,7 @@
         
         // var bulan = button.data('bulan');
         // var tahun = button.data('tahun');
-        mywindow.document.write('</head><body ><h1 style="text-align:center;">Laporan Bulanan Kerinci Sakti</h1><h3 style="text-align:center;">Bulan '+data_bulan+' Tahun '+data_tahun+'</h3>');
+        mywindow.document.write('</head><body ><h1 style="text-align:center;">Laporan Bulanan CV Mandiri</h1><h3 style="text-align:center;">Bulan '+data_bulan+' Tahun '+data_tahun+'</h3>');
         mywindow.document.write(data);
         mywindow.document.write('</body></html>');
 

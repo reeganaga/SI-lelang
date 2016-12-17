@@ -54,7 +54,7 @@
         <div class="row">
           <div class="col-sm-12 text-center col-footer-bottom">
             <a id="scroll-top" href="#"><i class="fa fa-angle-up fa-2x"></i></a>
-            <p class="copyright">2016 &copy; Kerinci Sakti. All Rights Reserved.</p>
+            <p class="copyright"><?php echo date('Y'); ?> &copy; CV Mandiri. All Rights Reserved.</p>
           </div>
         </div>
       </div>

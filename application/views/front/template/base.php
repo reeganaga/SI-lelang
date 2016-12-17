@@ -57,7 +57,7 @@
    ?>
   <!-- end custom stylesheet -->
 
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/front/assets/css/theme-orange-3.css" id="color-style">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/front/assets/css/theme-blue-2.css" id="color-style">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/front/assets/css/custom.css" id="color-style">
 </head>
 

@@ -24,8 +24,8 @@
         <!--===============================================================-->
         <div class="col-sm-9 col-sm-push-3">
           <div class="row mt-20">
+            <?php if ($arr_barang): ?>
                 <?php foreach ($arr_barang as $barang): ?>
-              <?php if ($barang->status=="aktif"): ?>
                 <div class="col-sm-4 mt-20">
                   <!--Katalog barang -->
                     <div class="shop-box bordered">
@@ -39,8 +39,10 @@
                       <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="<?php echo site_url('item/'.$barang->slug_barang); ?>"><i class="fa fa-angle-right"></i>Details</a>
                     </div>              
                 </div>
-              <?php endif ?>
                 <?php endforeach ?>
+            <?php else: ?>
+              <div class="alert alert-warning">Barang pada kategori <?php echo $slug; ?> saat ini belum tersedia</div>
+            <?php endif ?>
           </div>
           <div class="row">
             <div class="col-sm-12">

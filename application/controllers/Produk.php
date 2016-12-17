@@ -82,12 +82,16 @@ class Produk extends CI_Controller {
 
 		// $this->load->view('front/home/');
 		$arr_barang=$this->Barang_model->getBarangByCatSlugPagination($slug,$start,$limit)->result();
+		// echo "<pre>";
+		// print_r($arr_barang);
+		// echo "</pre>";
+		// die();
 		$arr_kategori=$this->Kategori_model->getKategori();		
 		$arr_kategori_row=$this->Kategori_model->getKategoriBySlug($slug);		
 		$this->template_front->display(
 			array('content'=>'front/produk/all_product_kategori',
 				'javascript'=>'front/produk/custom_js'),
-			array('pagination'=>$pagination,'arr_barang'=>$arr_barang,'arr_kategori'=>$arr_kategori,'metatag'=>$arr_kategori_row,'slug'=>$slug)
+			array('pagination'=>$pagination,'arr_barang'=>$arr_barang,'arr_kategori'=>$arr_kategori,'title'=>$slug,'slug'=>$slug)
 		);
 	}
 	public function slug($slug)
@@ -179,7 +183,7 @@ class Produk extends CI_Controller {
 			$this->db->or_where('status', 'bidding');
 			$cek_barang = $this->db->get('barang')->num_rows();
 			// echo $this->db->last_query();
-			
+
 			// die();
 			if ($cek_barang>0) {
 				$id_barang = $this->input->post('id_barang');
@@ -225,9 +229,12 @@ class Produk extends CI_Controller {
 		// echo $string;
 		$this->db->select('*,barang.slug as slug_barang');
 		$this->db->join('kategori','kategori.id_kategori=barang.id_kategori');
-		$this->db->where('status','aktif');
-		$this->db->like('nama_barang',$string);
+		// $this->db->where('status','aktif');
+		$this->db->or_like('nama_barang',$string);
+		$this->db->or_like('nama_kategori',$string);
 		$arr_barang = $this->db->get('barang')->result();
+		// echo $this->db->last_query();
+		// die();	
 		// $data=$this->db
 		// ->join('kategori','kategori.id_kategori.barang.id_kategori')
 		// ->get('barang')->result();

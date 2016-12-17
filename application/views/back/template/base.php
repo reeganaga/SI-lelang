@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Toko Kerinci Sakti | Admin</title>
+    <title>CV Mandiri | Admin</title>
     <!-- <link rel="icon" href="<?php echo base_url(); ?>assets/front/assets/images/favicon12.ico"> -->
     <link rel="icon" href="<?php echo base_url(); ?>assets/front/assets/images/favicon.ico">
 
@@ -63,7 +63,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#">Toko Kerinci Sakti Merchandise</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#">CV Mandiri </a>.</strong> All rights reserved.
       </footer>
 
 <!-- start control sidebar -->

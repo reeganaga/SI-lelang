@@ -5,7 +5,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>KSA</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Kerinci Sakti</b>ADMIN</span>
+          <span class="logo-lg"><b>CV Mandiri</b>ADMIN</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -27,7 +27,7 @@
                   <li class="user-header">
                     <img src="<?php echo base_url(); ?>assets/dist/img/avatar.png" class="img-circle" alt="User Image">
                     <p>
-                      Administrator - Kerinci Sakti
+                      Administrator - CV Mandiri
                       <!-- <small>Member since Nov. 2012</small> -->
                     </p>
                   </li>

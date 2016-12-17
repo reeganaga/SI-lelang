@@ -5,21 +5,21 @@
         <div class="col-sm-9 col-sm-push-3">
             <h1 class="title-sm text-theme text-theme-sm">hasil pencarian dari <?php echo $search; ?></h1>
           <div class="row mt-20">
-                <?php foreach ($arr_barang as $barang): ?>
-            <div class="col-sm-4 mt-20">
-              <!--Katalog barang -->
-                <div class="shop-box bordered">
-                  <a href="<?php echo site_url('item/'.$barang->slug_barang); ?>" class="img-box text-theme">
-                    <img title="<?php echo $barang->nama_barang; ?>" class="img-responsive" src="<?php echo base_url('assets/uploads/barang/'.$barang->gambar); ?>" alt="<?php echo $barang->nama_barang; ?>">
-                  </a>
-                  <h3 class="title-sm text-theme text-theme-sm" title="<?php echo $barang->nama_barang; ?>"><a href="<?php echo site_url('item/'.$barang->slug_barang); ?>"><?php echo $barang->nama_barang; ?></a></h3>
-                  <p class="text-theme-sm"><?php echo substr($barang->deskripsi, 0,30); ?></p>
-                  <h3 class="shop-price text-theme-sm">Rp <?php echo $barang->harga; ?></h3>
-                  <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="<?php echo site_url('produk/addtocart/'.$barang->id_barang); ?>"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                  <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="<?php echo site_url('item/'.$barang->slug_barang); ?>"><i class="fa fa-angle-right"></i>Details</a>
-                </div>              
-            </div>
-                <?php endforeach ?>
+            <?php foreach ($arr_barang as $barang): ?>
+              <div class="col-sm-4 mt-20">
+                <!--Katalog barang -->
+                  <div class="shop-box bordered">
+                    <a href="<?php echo site_url('item/'.$barang->slug_barang); ?>" class="img-box text-theme">
+                      <img title="<?php echo $barang->nama_barang; ?>" class="img-responsive" src="<?php echo base_url('assets/uploads/barang/'.$barang->gambar); ?>" alt="<?php echo $barang->nama_barang; ?>">
+                    </a>
+                    <h3 class="title-sm text-theme text-theme-sm" title="<?php echo $barang->nama_barang; ?>"><a href="<?php echo site_url('item/'.$barang->slug_barang); ?>"><?php echo $barang->nama_barang; ?></a></h3>
+                    <p class="text-theme-sm"><?php echo substr($barang->deskripsi, 0,30); ?></p>
+                    <h3 class="shop-price text-theme-sm">Rp <?php echo $barang->harga; ?></h3>
+                    <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="<?php echo site_url('produk/addtocart/'.$barang->id_barang); ?>"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="<?php echo site_url('item/'.$barang->slug_barang); ?>"><i class="fa fa-angle-right"></i>Details</a>
+                  </div>              
+              </div>
+            <?php endforeach ?>
             <?php if (empty($arr_barang)): ?>
               <div class="col-md-12">
                 <p>Maaf Barang yang anda cari tidak ada.</p> 

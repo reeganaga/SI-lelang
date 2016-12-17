@@ -37,7 +37,7 @@
             </button>
             <a class="navbar-brand" href="<?php echo site_url(); ?>">
               <img class="img-responsive logo-top" src="<?php echo base_url(); ?>assets/front/assets/images/logo/logo-kecil.png" alt="theme-img">
-              <h3 class="text-theme title-xl font-logo">SUPER POP UP</h3>
+              <h3 class="text-theme title-xl font-logo">CV Mandiri</h3>
             </a>
           </div>
 

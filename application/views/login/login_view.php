@@ -39,7 +39,7 @@
             
     <div class="login-box">
       <div class="login-logo">
-      	<a href="<?php echo base_url('home'); ?>"><img style="max-width:150px;" src="<?php echo base_url('assets/front/assets/images/logo/logo-kecil.png') ?>"></a>
+      	<a href="<?php echo base_url('home'); ?>" style="background: none;"><img style="max-width:150px;" src="<?php echo base_url('assets/front/assets/images/logo/logo-kecil.png') ?>"></a>
         <!-- <a href="<?php echo base_url(); ?>assets/index2.html"><b>Super</b>Pop-Up</a> -->
       </div><!-- /.login-logo -->
           <div class="row">
