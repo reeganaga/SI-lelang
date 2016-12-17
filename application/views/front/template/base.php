@@ -24,7 +24,7 @@
     <title>CV Mandiri</title>
   <?php endif ?>
   <!-- end custom stylesheet -->
-  <link rel="icon" href="<?php echo base_url(); ?>assets/front/assets/images/favicon.ico">
+  <!-- <link rel="icon" href="<?php echo base_url(); ?>assets/front/assets/images/favicon.ico"> -->
   <!-- <script src="<?php echo base_url(); ?>assets/front/assets/js/page/carousel-preload.js"></script> -->
 
   <!--[if IE 8]><html class="ie8"><![endif]-->
