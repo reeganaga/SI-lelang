@@ -48,6 +48,9 @@
                 <a href="<?php echo site_url(); ?>">Home</a>
               </li>
               <li>
+                <a href="<?php echo site_url('terjual'); ?>">Terjual</a>
+              </li>
+              <li>
                 <a href="<?php echo site_url('cara-pesan'); ?>">Cara Pemesanan</a>
               </li>
 

@@ -116,6 +116,45 @@ class Produk extends CI_Controller {
 		);
 	}
 
+	public function terjual($start=null)
+	{
+		// $this->load->view('front/home/');
+		if ($start==null) {
+			$start=0;
+		}
+		$limit=12;
+		$total_rows=$this->Barang_model->getBarangRow()->num_rows();
+		$config['base_url'] = site_url().'home';
+		$config['total_rows'] = $total_rows;
+		$config['per_page'] = $limit;
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$arr_kategori=$this->Kategori_model->getKategori();
+		$arr_barang=$this->Barang_model->getBarangPagination($start,$limit,'closed')->result();
+		// echo $this->db->last_query();
+		// print_r($arr_barang);
+		// die();
+
+		// $arr_slider=$this->Slider_model->getSlider();
+		// print_r($arr_slider);exit();
+		$this->pagination->initialize($config);
+		$pagination = $this->pagination->create_links();
+		// $testimoni=$this->Testimoni_model->getTestimoniAktif();
+		$this->template_front->display(
+			array('content'=>'front/home/content','javascript'=>'front/home/custom_js'),
+			array('pagination'=>$pagination,'arr_barang'=>$arr_barang,'arr_kategori'=>$arr_kategori,'title'=>'HOME')
+		);
+
+	}
+
 	public function bidding(){
 		$config = array(
 		        array(
@@ -135,34 +174,45 @@ class Produk extends CI_Controller {
 		$this->form_validation->set_rules($config);	
 
 		if ($this->form_validation->run() == TRUE) {
-			$id_barang = $this->input->post('id_barang');
-			$jml_bidding = $this->input->post('jml_bidding');
-			$id_user = $this->session->userdata('id_user');
 
-			$data = array(
-				'id_barang'=>$this->input->post('id_barang'),
-				'id_user'=>$this->session->userdata('id_user'),
-				'tgl_bidding'=>date('Y-m-d H:i:s'),
-				'jml_bidding'=>$this->input->post('jml_bidding'),
-			);
-			//cek apakah pernah bidding atau belum ?
-			$check_bidding = $this->Bidding_model->cek_bidding(array('id_barang'=>$id_barang,'id_user'=>$id_user));
-			if ($check_bidding->num_rows()==1) {
-				//update ke tabel bidding
-				$data_bidding = $check_bidding->row();
-				$insert_bidding = $this->Bidding_model->updateBidding($data_bidding->id_bidding,$data);
-			}else{
-				// insert ke tabel bidding
-				$insert_bidding = $this->Bidding_model->insertBidding($data);
-			}
+			$this->db->or_where('status', 'open');
+			$this->db->or_where('status', 'bidding');
+			$cek_barang = $this->db->get('barang')->num_rows();
+			// echo $this->db->last_query();
 			
-			//mengubah data expired barang
-			$now = date_create(date("Y-m-d 00:00:00"));
-			$next_day = date_add($now, date_interval_create_from_date_string('2 days'));
-			$tgl_expired = date_format($next_day, 'Y-m-d H:i:s');
+			// die();
+			if ($cek_barang>0) {
+				$id_barang = $this->input->post('id_barang');
+				$jml_bidding = $this->input->post('jml_bidding');
+				$id_user = $this->session->userdata('id_user');
 
-			$update_barang = $this->Barang_model->updateBarang($this->input->post('id_barang'),array('tgl_expired'=>$tgl_expired,'harga_deal'=>$jml_bidding,'status'=>'bidding'));
-			$this->session->set_flashdata('msg_success', 'Anda telah berhasil bidding');
+				$data = array(
+					'id_barang'=>$this->input->post('id_barang'),
+					'id_user'=>$this->session->userdata('id_user'),
+					'tgl_bidding'=>date('Y-m-d H:i:s'),
+					'jml_bidding'=>$this->input->post('jml_bidding'),
+				);
+				//cek apakah pernah bidding atau belum ?
+				$check_bidding = $this->Bidding_model->cek_bidding(array('id_barang'=>$id_barang,'id_user'=>$id_user));
+				if ($check_bidding->num_rows()==1) {
+					//update ke tabel bidding
+					$data_bidding = $check_bidding->row();
+					$insert_bidding = $this->Bidding_model->updateBidding($data_bidding->id_bidding,$data);
+				}else{
+					// insert ke tabel bidding
+					$insert_bidding = $this->Bidding_model->insertBidding($data);
+				}
+				
+				//mengubah data expired barang
+				$now = date_create(date("Y-m-d 00:00:00"));
+				$next_day = date_add($now, date_interval_create_from_date_string('2 days'));
+				$tgl_expired = date_format($next_day, 'Y-m-d H:i:s');
+
+				$update_barang = $this->Barang_model->updateBarang($this->input->post('id_barang'),array('tgl_expired'=>$tgl_expired,'harga_deal'=>$jml_bidding,'status'=>'bidding'));
+				$this->session->set_flashdata('msg_success', 'Anda telah berhasil bidding');
+			}else{
+				$this->session->set_flashdata('msg_error', 'Barang telah selesai bidding');
+			}
 			redirect('item/'.$this->input->post('slug_barang'));
 		} else {
 			# code...

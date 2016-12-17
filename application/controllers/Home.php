@@ -48,7 +48,7 @@ class Home extends CI_Controller {
 
 
 		$arr_kategori=$this->Kategori_model->getKategori();
-		$arr_barang=$this->Barang_model->getBarangPagination($start,$limit)->result();
+		$arr_barang=$this->Barang_model->getBarangPagination($start,$limit,'open')->result();
 		// $arr_slider=$this->Slider_model->getSlider();
 		// print_r($arr_slider);exit();
 		$this->pagination->initialize($config);

@@ -171,13 +171,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($arr_bidder as $bidder): ?>
+                      <?php $i=1; foreach ($arr_bidder as $bidder): ?>
                         <tr>
-                          <td><?php echo $bidder->nama_lengkap; ?></td>
+                          <td><?php echo $bidder->nama_lengkap; ?>
+                            <?php if ($i==1 && $barang->status=='closed' || $barang->status=='processed'): ?>
+                              <span class="badge bg-warning">Pemenang</span>
+                            <?php endif ?>
+                          </td>
                           <td><?php $date_bidding = date_create($bidder->tgl_bidding); echo date_format($date_bidding,'d F Y - H:i'); ?></td>
                           <td>Rp <?php echo number_format($bidder->jml_bidding,0,'','.'); ?></td>
                         </tr>
-                      <?php endforeach ?>
+                      <?php $i++; endforeach ?>
                     </tbody>
                   </table>
                 </div>

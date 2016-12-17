@@ -5,8 +5,8 @@
         <div class="col-sm-9 col-sm-push-3">
           
           <div class="row mt-20">
+            <?php if ($arr_barang): ?>
                 <?php foreach ($arr_barang as $barang): ?>
-                  <?php if ($barang->status=='open' || $barang->status=='bidding'): ?>
                     <div class="col-sm-4 mt-20">
                       <!--Katalog barang -->
                         <div class="shop-box bordered">
@@ -17,13 +17,15 @@
                           <p class="text-theme-sm"><?php echo substr($barang->deskripsi, 0,30); ?></p>
                           <p>Status : <?php echo $barang->status; ?></p>
                           <p>Kode Barang : <?php echo 'BRG'.$barang->id_barang; ?></p>
-                          <p class="title-sm text-theme text-theme-sm">Bid : Rp 150.000</p>
+                          <p class="title-sm text-theme text-theme-sm">Bid : Rp <?php echo number_format($barang->harga_deal,0,'.','.') ?></p>
                           <h3 class="shop-price text-theme-sm">Harga awal Rp <?php echo number_format($barang->harga,0,'.','.'); ?></h3>
                           <a class="btn btn-primary btn-tiny btn-sm text-theme-sm" href="<?php echo site_url('item/'.$barang->slug_barang); ?>"><i class="fa fa-angle-right"></i>Details</a>
                         </div>              
                     </div>
-                  <?php endif ?>
                 <?php endforeach ?>
+            <?php else: ?>
+              <div class="alert alert-warning text-center">Mohon Maaf Barang saat ini belum tersedia.</div>
+            <?php endif ?>
           </div>
           <div class="row">
             <div class="col-sm-12">

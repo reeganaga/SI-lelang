@@ -32,7 +32,15 @@ class Barang_model extends CI_Model
 		return $query;
 	}
 
-	public function getBarangPagination($start,$limit){
+	public function getBarangPagination($start,$limit,$condition=false){
+		if ($condition=='closed') {
+				$this->db->or_where('status','closed');
+				$this->db->or_where('status','processed');	
+		}elseif ($condition=='open') {
+				$this->db->or_where('status','open');
+				$this->db->or_where('status','bidding');
+			
+		}
 		$this->db->select('*,barang.slug as slug_barang');
 		$this->db->order_by('barang.id_barang','DESC');
 		$this->db->join('kategori','kategori.id_kategori=barang.id_kategori');

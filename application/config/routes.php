@@ -67,3 +67,5 @@ $route['kategori/(:any)']='produk/kategori/$1';
 $route['kategori/(:any)/(:num)']='produk/kategori/$1/$2';
 $route['item/(:any)']='produk/slug/$1';
 $route['seo/sitemap\.xml'] = "admin/seo/sitemap";
+$route['terjual/(:num)']='produk/terjual/$1';
+$route['terjual']='produk/terjual';

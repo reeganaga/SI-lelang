@@ -8,8 +8,8 @@
             <p class="text-theme">ikuti kami di Medsos dibawah ini untuk mengetahui update dari kami.</p>
             <div class="text-theme">
               <ul class="list-inline">
-                <li><a href="#" target="_blank"><i class="fa fa-facebook fa-round"></i></a></li>
-                <li><a href="#" target="_blank"><i class="fa fa-instagram fa-round"></i></a></li>
+                <li><a href="https://www.facebook.com/dani.nugroho.330" target="_blank"><i class="fa fa-facebook fa-round"></i> Facebook</a></li>
+                <li><a href="https://www.facebook.com/Alat-sablon-frame-presisi-989263397771590/?fref=ts" target="_blank"><i class="fa fa-facebook fa-round"></i> Fanspage</a></li> 
               </ul>
             </div>
           </div>
@@ -17,9 +17,9 @@
             <h3 class="text-theme title-sm hr-left">Alamat</h3>
               <p class="text-theme">
                 <!-- <i class="fa fa-home"></i><br> -->
-                Desa Talang Lindung RT 03<br>
-                Sungai Bungkal, Kerinci <br>
-                Jambi
+                Yuwono, RT 3 <br>
+                Pandak, bantul, <br>
+                yogyakarta
               </p>              
           </div>
           <div class="col-sm-3 col-xs-6">
@@ -34,13 +34,15 @@
             </p>
           </div>
           <div class="col-sm-3 col-xs-12">
-            <h3 class="text-theme title-sm hr-left">Dapatkan Info Diskon</h3>
-            <div class="input-group text-theme">
-              <input type="text" class="form-control input-lg" placeholder="E-mail">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-primary input-lg btn-z-index"><i class="fa fa-paper-plane"></i>Subscribe</button>
-              </span>
-            </div>
+            <h3 class="text-theme title-sm hr-left">Kontak Kami</h3>
+            <p class="text-theme">
+              <i class="fa fa-envelope"></i> Sms/wa: <br>
+              089655160371 / 082227153723<br>
+              <i class="fa fa-phone"></i> Pin:<br>59748E79
+            </p>
+            <p class="text-theme">
+              
+            </p>
           </div>
         </div>
       </div>
