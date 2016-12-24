@@ -249,13 +249,13 @@
         <div class="modal-body">
           <?php if ($this->session->userdata('id_user')): ?>
           <form class="form" action="<?php echo site_url(); ?>produk/bidding" method="post" >
-            <div class="input-group">
+            <div class="form-group">
               <input type="text" name="jml_bidding" class="form-control" placeholder="Jumlah Nomimal Bidding">
               <input type="hidden" name="id_barang" id="modal_id_barang">
               <input type="hidden" name="slug_barang" id="modal_slug_barang">
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary" name="send_bidding">Bid Sekarang</button>
+              <button type="submit" class="btn btn-primary form-control" name="send_bidding">Bid Sekarang</button>
             </div>
           </form>
           <?php else: ?>
