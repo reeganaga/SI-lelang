@@ -136,6 +136,7 @@
                 }else{
                   //jika barang sudah dibidding maka terdapat tanggal expired
                   $date_exp = date_create($barang->tgl_expired); echo date_format($date_exp,'d F Y - H:i:s'); 
+                  $difference = ((strtotime ($barang->tgl_expired) - strtotime (date('Y-m-d')))/(60*60*24));
                 }
                 ?></h3>
                 <br>
@@ -143,7 +144,11 @@
                   <dd class="text-justify"><?php echo $barang->deskripsi; ?></dd>
                 </dl>
                 <span class="input-group-btn">
-                <button data-idbarang="<?php echo $barang->id_barang; ?>" data-slug="<?php echo $barang->slug_barang; ?>" type="submit" data-toggle="modal" data-target="#modal-bidding" class="btn btn-primary btn-z-index"><i class="fa fa-thumbs-up"></i>Bid Sekarang</button>
+                <?php if ($difference<0): ?>
+                  <button class="btn btn-primary btn-z-index" disabled="disabled" title="Barang telah lewat melewati deadline"><i class="fa fa-thumbs-up"></i>Bid Sekarang</button>
+                <?php else: ?>
+                  <button data-idbarang="<?php echo $barang->id_barang; ?>" data-slug="<?php echo $barang->slug_barang; ?>" type="submit" data-toggle="modal" data-target="#modal-bidding" class="btn btn-primary btn-z-index"><i class="fa fa-thumbs-up"></i>Bid Sekarang</button>
+                <?php endif ?>
                 </span>
               </div>
             </div>
